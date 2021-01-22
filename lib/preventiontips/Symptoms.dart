@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Symptoms extends StatelessWidget{
+class Symptoms extends StatefulWidget {
+  @override
+  _SymptomsState createState() => _SymptomsState();
+}
+
+class _SymptomsState extends State<Symptoms> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -78,3 +83,4 @@ class Symptoms extends StatelessWidget{
     );
   }
 }
+

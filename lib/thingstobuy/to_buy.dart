@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class to_buy extends StatelessWidget{
+class To_buy extends StatefulWidget {
+  @override
+  _To_buyState createState() => _To_buyState();
+}
+
+class _To_buyState extends State<To_buy> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -285,7 +285,7 @@ class thingstobuy extends StatefulWidget {
 
 class _thingstobuyState extends State<thingstobuy> {
   var screens = [
-    to_buy(),
+    To_buy(),
     instock(),
   ];
   int selected_tab=0;

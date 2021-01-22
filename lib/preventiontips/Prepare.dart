@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Prepare extends StatelessWidget{
+class Prepare extends StatefulWidget {
+  @override
+  _PrepareState createState() => _PrepareState();
+}
+
+class _PrepareState extends State<Prepare> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +18,7 @@ class Prepare extends StatelessWidget{
             alignment: Alignment.topLeft,
             child: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,),
                 onPressed: (){
-              Navigator.pop(context);
+                  Navigator.pop(context);
                 }),
           ),
           Container(
@@ -43,20 +48,20 @@ class Prepare extends StatelessWidget{
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget> [
-                        SizedBox(
-                          height: 24,
-                        ),
+                      SizedBox(
+                        height: 24,
+                      ),
                       Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             for(var i=0;i<15;i++)
-                           ListTile(
-                             leading: Icon(Icons.ac_unit),
-                             title: Text("Lorem ipsum"),
-                             subtitle: Text("Lorem ipsum"),
-                             trailing: Icon(Icons.help),
-                           ),
+                              ListTile(
+                                leading: Icon(Icons.ac_unit),
+                                title: Text("Lorem ipsum"),
+                                subtitle: Text("Lorem ipsum"),
+                                trailing: Icon(Icons.help),
+                              ),
 
 
                           ],

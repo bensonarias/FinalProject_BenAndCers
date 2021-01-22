@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class instock extends StatelessWidget{
+class instock extends StatefulWidget {
+  @override
+  _instockState createState() => _instockState();
+}
+
+class _instockState extends State<instock> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,3 +86,4 @@ class instock extends StatelessWidget{
     );
   }
 }
+
