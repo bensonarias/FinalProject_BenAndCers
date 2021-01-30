@@ -8,7 +8,9 @@ class Symptoms extends StatefulWidget {
 class _SymptomsState extends State<Symptoms> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+        backgroundColor: Colors.blue,
+        body: Container(
       margin: EdgeInsets.only(top: 15),
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
@@ -16,7 +18,9 @@ class _SymptomsState extends State<Symptoms> {
         children: <Widget>[
           Align(
             alignment: Alignment.topLeft,
-            child: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), onPressed: (){}),
+            child: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), onPressed: (){
+              Navigator.pop(context);
+            }),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 32,vertical: 32),
@@ -80,7 +84,7 @@ class _SymptomsState extends State<Symptoms> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 

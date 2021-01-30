@@ -8,7 +8,9 @@ class instock extends StatefulWidget {
 class _instockState extends State<instock> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+        backgroundColor: Colors.blue,
+        body: Container(
       margin: EdgeInsets.only(top: 15),
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
@@ -83,7 +85,7 @@ class _instockState extends State<instock> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 

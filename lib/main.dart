@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:final_project/preventiontips/Prepare.dart';
-import 'package:final_project/preventiontips/To_do.dart';
-import 'package:final_project/preventiontips/Symptoms.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:final_project/thingstobuy/to_buy.dart';
-import 'package:final_project/thingstobuy/in_stock.dart';
-import 'package:final_project/emergencyhotlines/contacts_pandemic.dart';
-import 'package:final_project/emergencyhotlines/other_contacts.dart';
+import 'package:final_project/griddashboard.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -174,190 +169,63 @@ About_app(BuildContext context){
   );
 }
 MainBody(BuildContext context){
-  return Container(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  GridDashboard.gridpasscontext=context;
+  return Scaffold(
+    backgroundColor: Colors.blue,
+    body: Column(
       children: <Widget>[
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(icon: Icon(Icons.help,color: Colors.white,size: 40,),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => About()),
-                );
-              }),
+        SizedBox(
+          height: 110,
         ),
-        Image(image: AssetImage('assets/image/IconOnlyNew.png'),
-          height: 300,
-          alignment: Alignment.center,
+        Padding(
+          padding: EdgeInsets.only(left: 16, right: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
 
+                  Text(
+                    "AGAP",
+                    style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    "Home",
+                    style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600)),
+                  ),
+                ],
+              ),
+//              IconButton(
+//                alignment: Alignment.topCenter,
+//                icon: Image.asset(
+//                  "assets/notification.png",
+//                  width: 24,
+//                ),
+//                onPressed: () {},
+//              )
+            ],
+          ),
         ),
-        RaisedButton(
-          onPressed: () {
-              var route = new MaterialPageRoute(
-                  builder: (BuildContext)=>
-                  new thingstobuy(),
-              );
-              Navigator.of(context).push(route);
-          },
-          child: const Text('Things to buy', style: TextStyle(fontSize: 20)),
-          color: Colors.blue,
-          textColor: Colors.white,
-          elevation: 5,),
-        RaisedButton(
-          onPressed: () {
-            var route = new MaterialPageRoute(
-              builder: (BuildContext)=>
-              new preventiontips(),
-            );
-            Navigator.of(context).push(route);
-          },
-          child: const Text('Prevention tips', style: TextStyle(fontSize: 20)),
-          color: Colors.blue,
-          textColor: Colors.white,
-          elevation: 5,),
-        RaisedButton(
-          onPressed: () {
-            var route = new MaterialPageRoute(
-              builder: (BuildContext)=>
-              new emergencyhotlines(),
-            );
-            Navigator.of(context).push(route);
-          },
-          child: const Text('Emergency Hotlines', style: TextStyle(fontSize: 20)),
-          color: Colors.blue,
-          textColor: Colors.white,
-          elevation: 5,),
+        SizedBox(
+          height: 40,
+        ),
+//        GridDashboard.with_context(context: context,)
+      GridDashboard()
       ],
     ),
   );
 }
-
-class preventiontips extends StatefulWidget{
-  @override
-  _preventiontipsState createState() => new _preventiontipsState();
-}
-
-class _preventiontipsState extends State<preventiontips>{
-  var screens = [
-    Prepare(),
-    To_do(),
-    Symptoms()
-  ];
-  int selected_tab=0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromRGBO(38, 81, 158, 1),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selected_tab,
-        items: [
-        BottomNavigationBarItem(
-            icon: new Image.asset("assets/image/PreventionIcon.png",width: 50,height: 50,),
-            label: 'Prepare'),
-          BottomNavigationBarItem(
-              icon: new Image.asset("assets/image/Ifmerongcovid.png",width: 50,height: 50,),
-              label: 'To do'),
-          BottomNavigationBarItem(
-              icon: new Image.asset("assets/image/symptoms.png",width: 50,height: 50,),
-              label: 'Symptoms'),
-      ],
-        onTap: (index){
-          setState(() {
-            selected_tab =index;
-          });
-        },
-        showUnselectedLabels: true ,
-        iconSize: 30,
-    ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: screens[selected_tab],
-    );
-
-  }
-}
-
-class thingstobuy extends StatefulWidget {
-  @override
-  _thingstobuyState createState() => _thingstobuyState();
-}
-
-class _thingstobuyState extends State<thingstobuy> {
-    var screens = [
-    To_buy(),
-    instock(),
-  ];
-  int selected_tab=0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromRGBO(38, 81, 158, 1),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selected_tab,
-        items: [
-          BottomNavigationBarItem(
-              icon: new Image.asset("assets/image/add.png",width: 50,height: 50,),
-              label: 'To buy'),
-          BottomNavigationBarItem(
-              icon: new Image.asset("assets/image/completed.png",width: 50,height: 50,),
-              label: 'In stock'),
-        ],
-        onTap: (index){
-          setState(() {
-            selected_tab =index;
-          });
-        },
-        showUnselectedLabels: true ,
-        iconSize: 30,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: screens[selected_tab],
-    );
-
-  }
-}
-
-class emergencyhotlines extends StatefulWidget {
-  @override
-  _emergencyhotlinesState createState() => _emergencyhotlinesState();
-}
-
-class _emergencyhotlinesState extends State<emergencyhotlines> {
-  var screens = [
-    contacts(),
-    other_contacts(),
-  ];
-  int selected_tab=0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromRGBO(38, 81, 158, 1),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selected_tab,
-        items: [
-          BottomNavigationBarItem(
-              icon: new Image.asset("assets/image/phone.png",width: 50,height: 50,),
-              label: 'Contacts for Pandemic'),
-          BottomNavigationBarItem(
-              icon: new Image.asset("assets/image/emergency-call.png",width: 50,height: 50,),
-              label: 'Other Emergency Hotlines'),
-        ],
-        onTap: (index){
-          setState(() {
-            selected_tab =index;
-          });
-        },
-        showUnselectedLabels: true ,
-        iconSize: 30,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: screens[selected_tab],
-    );
-
-  }
-}
-
-
 
 
