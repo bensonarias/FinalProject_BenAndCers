@@ -3,6 +3,8 @@ import 'package:splashscreen/splashscreen.dart';
 import 'package:final_project/griddashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'config/palette.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -64,7 +66,7 @@ class AgapApp extends StatelessWidget{
 class About extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromRGBO(38, 81, 158, 1),
+    return Scaffold(backgroundColor: Palette.primaryColor,
       body: About_app(context),);
   }
 }
@@ -91,6 +93,7 @@ About_app(BuildContext context){
           height: 350,
           margin: EdgeInsets.symmetric(horizontal: 32),
           decoration: BoxDecoration(
+
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white,
           ),
@@ -171,57 +174,50 @@ About_app(BuildContext context){
 MainBody(BuildContext context){
   GridDashboard.gridpasscontext=context;
   return Scaffold(
-    backgroundColor: Colors.blue,
+    backgroundColor: Palette.primaryColor,
     body: Column(
       children: <Widget>[
         SizedBox(
-          height: 110,
+          height: 80,
         ),
-        Padding(
-          padding: EdgeInsets.only(left: 16, right: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-
-                  Text(
-                    "AGAP",
-                    style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    "Home",
-                    style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600)),
-                  ),
-                ],
-              ),
-//              IconButton(
-//                alignment: Alignment.topCenter,
-//                icon: Image.asset(
-//                  "assets/notification.png",
-//                  width: 24,
-//                ),
-//                onPressed: () {},
-//              )
-            ],
-          ),
+        Align(
+          alignment: Alignment.topRight,
+          child: IconButton(icon: Icon(Icons.info,color: Colors.white,),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => About()),
+                );
+              }),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child:Text(
+            "AGAP",
+            style: GoogleFonts.openSans(
+                textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold)),
+            ),
+             ),
+          SizedBox(
+          height: 4,
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Home",
+            style: GoogleFonts.openSans(
+                textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600)),
+          )
         ),
         SizedBox(
           height: 40,
         ),
-//        GridDashboard.with_context(context: context,)
       GridDashboard()
       ],
     ),

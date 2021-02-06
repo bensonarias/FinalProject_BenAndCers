@@ -1,10 +1,11 @@
+import 'package:final_project/config/palette.dart';
 import 'package:flutter/material.dart';
 
 class other_contacts extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Palette.primaryColor,
         body: Container(
       margin: EdgeInsets.only(top: 15),
       height: MediaQuery.of(context).size.height,
