@@ -375,10 +375,12 @@ class _newCovidUpdatesState extends State<newCovidUpdates> {
                 });
               }else if(index == 1){
                 setState(() {
+                  globals.link="https://disease.sh/v3/covid-19/continents/asia?strict=true";
+                });
+              }else if(index == 2){
+               setState(() {
                   globals.link="https://disease.sh/v3/covid-19/all";
                 });
-              }else{
-//                StatsGrid.url="";
               }
             },
           ),
