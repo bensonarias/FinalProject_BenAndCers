@@ -1,14 +1,65 @@
+import 'package:final_project/config/palette.dart';
 import 'package:flutter/material.dart';
+
 
 class To_buy extends StatefulWidget {
   @override
   _To_buyState createState() => _To_buyState();
 }
 
+
 class _To_buyState extends State<To_buy> {
+  List<String> title = new List<String>();
+  List<bool> condition = new List<bool>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    setState(() {
+        title.add("first item");
+        condition.add(false);
+
+    });
+  }
+
+  void ItemChange(bool val,int index){
+    setState(() {
+      condition[index] = val;
+    });
+  }
+
+  createAlertDialog(BuildContext context){
+    TextEditingController custom_controller = TextEditingController();
+    
+    return showDialog(context: context,
+    builder: (BuildContext context){
+     return AlertDialog(
+        title: Text("What to add another item on the checklist?"),
+        content: TextField(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Add an item'),
+          controller: custom_controller,
+        ),
+        actions: <Widget>[
+          MaterialButton(
+            elevation: 5.0,
+            child: Text("Submit"),
+            onPressed: (){
+              Navigator.of(context).pop(custom_controller.text.toString());
+            },
+          )
+        ],
+      );
+    });
+
+
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+    backgroundColor: Palette.primaryColor,
+    body: Container(
       margin: EdgeInsets.only(top: 15),
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
@@ -19,6 +70,16 @@ class _To_buyState extends State<To_buy> {
             child: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,),
                 onPressed: (){
                   Navigator.pop(context);
+                }),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: IconButton(icon: Icon(Icons.add_circle_outline,color: Colors.white,),
+                onPressed: (){
+                  createAlertDialog(context).then((onValue){
+                    condition.add(false);
+                    title.add('$onValue');
+                  });
                 }),
           ),
           Container(
@@ -55,14 +116,21 @@ class _To_buyState extends State<To_buy> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            for(var i=0;i<15;i++)
-                              ListTile(
-                                leading: Icon(Icons.ac_unit),
-                                title: Text("Lorem ipsum"),
-                                subtitle: Text("Lorem ipsum"),
-                                trailing: Icon(Icons.help),
-                              ),
-
+                            new ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                              itemCount: condition.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return new CheckboxListTile(
+                                    value: condition[index],
+                                    title: new Text(title[index]),
+                                    controlAffinity: ListTileControlAffinity
+                                        .leading,
+                                    onChanged: (bool val) {
+                                      ItemChange(val, index);
+                                    }
+                                );
+                              })
 
                           ],
                         ),
@@ -83,6 +151,27 @@ class _To_buyState extends State<To_buy> {
           ),
         ],
       ),
+    ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () {},
+              child: Icon(Icons.check),
+            ),
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () {},
+              child: Icon(Icons.add),
+            )
+          ],
+        ),
+      ),
+
     );
   }
 }
